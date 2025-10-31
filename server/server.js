@@ -14,30 +14,37 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:5173',   
-  'http://localhost:30517300',
-  'http://127.0.0.1:5173',
-  'https://cw8nsbb5-5173.inc1.devtunnels.ms',
-  'https://bookit-o6sm.onrender.com',
-  'https://bookit-frontend-bx9p.onrender.com',
-  'https://bookit.hitanshu.tech'
-];
-
-app.use(cors({
+// CORS configuration
+const corsOptions = {
   origin: function (origin, callback) {
-     if (!origin) return callback(null, true);
+    // Allow requests with no origin (like mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    
+    // Development environment - allow all origins
+    if (process.env.NODE_ENV !== 'production') {
+      return callback(null, true);
+    }
+    
+    // Production environment - only allow specific origins
+    const allowedOrigins = [
+      'https://bookit-frontend-bx9p.onrender.com',
+      'https://bookit.hitanshu.tech'
+    ];
+    
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       console.warn(`CORS error: ${origin} not allowed`);
       return callback(new Error(msg), false);
     }
+    
     return callback(null, true);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
