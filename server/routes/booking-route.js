@@ -1,6 +1,7 @@
 import express from 'express';
 import pool from '../config/dbconfig.js';
 import emailService from '../services/emailService.js';
+import { runInBackground } from '../utils/backgroundTasks.js';
 
 const router = express.Router();
 
@@ -169,25 +170,28 @@ router.post('/', validateBookingInput, async (req, res) => {
     
     await client.query('COMMIT');
     
-     try {
-      await emailService.sendBookingConfirmation(user_email, {
-        bookingId: booking_id,
-        userName: user_name,
-        experienceId: experience_id,
-        date: date,
-        time: time,
-        quantity: quantity,
-        total: total,
-        subtotal: subtotal,
-        discount: discount,
-        tax: tax,
-        promoCode: promo_applied
-      });
-      console.log('Booking confirmation email sent to:', user_email);
-    } catch (emailError) {
-      console.error('Failed to send booking confirmation email:', emailError);
-       
-    }
+    // Send email in background
+    runInBackground(async () => {
+      try {
+        console.log('Sending booking confirmation email in background to:', user_email);
+        await emailService.sendBookingConfirmation(user_email, {
+          bookingId: booking_id,
+          userName: user_name,
+          experienceId: experience_id,
+          date: date,
+          time: time,
+          quantity: quantity,
+          total: total,
+          subtotal: subtotal,
+          discount: discount,
+          tax: tax,
+          promoCode: promo_applied
+        });
+        console.log('Booking confirmation email sent to:', user_email);
+      } catch (emailError) {
+        console.error('Failed to send booking confirmation email:', emailError);
+      }
+    });
     
     res.status(201).json({
       success: true,
