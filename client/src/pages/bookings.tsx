@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useState, useEffect, useMemo } from 'react';
 import { ArrowLeft, Plus, Minus } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
