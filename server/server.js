@@ -28,8 +28,16 @@ const corsOptions = {
     // Production environment - only allow specific origins
     const allowedOrigins = [
       'https://bookit-frontend-bx9p.onrender.com',
-      'https://bookit.hitanshu.tech'
+      'https://bookit.hitanshu.tech',
+      'https://bookit-o6sm.onrender.com',
+      'http://localhost:3000',
+      'http://localhost:5173'
     ];
+    
+    // Also allow subdomains of hitanshu.tech
+    if (origin.endsWith('.hitanshu.tech')) {
+      return callback(null, true);
+    }
     
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
@@ -40,8 +48,12 @@ const corsOptions = {
     return callback(null, true);
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin', 'Access-Control-Allow-Origin'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 600, // 10 minutes
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
