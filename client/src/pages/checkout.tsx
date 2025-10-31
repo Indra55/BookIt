@@ -86,7 +86,7 @@ const CheckoutPage = () => {
     setPromoError('');
 
     try {
-      const response = await fetch('http://localhost:4000/api/booking/promo/validate', {
+      const response = await fetch('https://bookit-o6sm.onrender.com/api/booking/promo/validate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ const CheckoutPage = () => {
 
       console.log('Sending booking request:', requestBody);
 
-      const response = await fetch('http://localhost:4000/api/booking', {
+      const response = await fetch('https://bookit-o6sm.onrender.com/api/booking', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

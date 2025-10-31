@@ -18,7 +18,7 @@ const BookingConfirmation = () => {
       try {
         if (!userEmail) return;
         
-        const response = await axios.post('http://localhost:4000/api/email/send-booking-confirmation', {
+        const response = await axios.post('https://bookit-o6sm.onrender.com/api/email/send-booking-confirmation', {
           to: userEmail,
           bookingDetails: {
             ...bookingDetails,

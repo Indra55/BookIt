@@ -1,6 +1,7 @@
 const API_BASE_URLS = [
   'http://localhost:4000',
-  'https://cw8nsbb5-4000.inc1.devtunnels.ms'
+  'https://cw8nsbb5-4000.inc1.devtunnels.ms',
+  'https://bookit-o6sm.onrender.com'
 ];
 
 type RequestOptions = {

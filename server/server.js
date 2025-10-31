@@ -18,7 +18,10 @@ const allowedOrigins = [
   'http://localhost:5173',   
   'http://localhost:30517300',
   'http://127.0.0.1:5173',
-  'https://cw8nsbb5-5173.inc1.devtunnels.ms'  
+  'https://cw8nsbb5-5173.inc1.devtunnels.ms',
+  'https://bookit-o6sm.onrender.com',
+  'https://bookit-frontend-bx9p.onrender.com',
+  'https://bookit.hitanshu.tech'
 ];
 
 app.use(cors({
