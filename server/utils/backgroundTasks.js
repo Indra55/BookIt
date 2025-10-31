@@ -1,5 +1,4 @@
 export const runInBackground = (fn) => {
-    // Use setImmediate for Node.js or setTimeout for browser compatibility
     const asyncRunner = typeof setImmediate === 'function' ? setImmediate : setTimeout;
     
     Promise.resolve()

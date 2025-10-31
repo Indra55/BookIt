@@ -30,7 +30,6 @@ const validateBookingInput = (req, res, next) => {
   next();
 };
 
-// Validate promo code
 router.post('/promo/validate', async (req, res) => {
   try {
     const { promo_code, subtotal } = req.body;

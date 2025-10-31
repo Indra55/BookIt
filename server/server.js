@@ -14,18 +14,14 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const app = express();
 
-// CORS configuration
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl, Postman)
     if (!origin) return callback(null, true);
     
-    // Development environment - allow all origins
     if (process.env.NODE_ENV !== 'production') {
       return callback(null, true);
     }
     
-    // Production environment - only allow specific origins
     const allowedOrigins = [
       'https://bookit-frontend-bx9p.onrender.com',
       'https://bookit.hitanshu.tech',
@@ -34,7 +30,6 @@ const corsOptions = {
       'http://localhost:5173'
     ];
     
-    // Also allow subdomains of hitanshu.tech
     if (origin.endsWith('.hitanshu.tech')) {
       return callback(null, true);
     }
@@ -51,7 +46,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin', 'Access-Control-Allow-Origin'],
   exposedHeaders: ['Content-Range', 'X-Content-Range'],
-  maxAge: 600, // 10 minutes
+  maxAge: 600,
   preflightContinue: false,
   optionsSuccessStatus: 204
 };
