@@ -1,179 +1,359 @@
-# 🚀 BookIt: Experiences & Slots - Fullstack Booking Platform
+# 🎫 BookIt: Experiences & Slots
 
-A modern, full-stack web application for discovering and booking unique travel experiences with real-time slot availability. Built with a focus on performance, scalability, and user experience.
+<div align="center">
 
-## 🌟 Key Features
+**A modern, full-stack booking platform for discovering and reserving unique travel experiences**
 
-- **Dynamic Experience Discovery**: Browse curated travel experiences with rich media
-- **Real-time Slot Management**: View and book available time slots
-- **Promo Code System**: Apply and validate promotional codes
-- **Responsive Design**: Seamless experience across all devices
-- **Secure Authentication**: JWT-based user authentication
-- **Email Notifications**: Booking confirmations and 
-- **Pagination**: Efficiently browse through experiences with server-side pagination
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
+[![React Version](https://img.shields.io/badge/react-19-61dafb)](https://reactjs.org)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-316192)](https://www.postgresql.org)
+
+[Live Demo](https://bookit-demo.com) • [Documentation](https://docs.bookit.com) • [Report Bug](https://github.com/indra55/bookit/issues) • [Request Feature](https://github.com/indra55/bookit/issues)
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Screenshots](#-screenshots)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [API Documentation](#-api-documentation)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+  <!-- First Row: 2 images -->
+  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+    <div>
+      <h3>1. Desktop View</h3>
+      <img src="./img/6.png" alt="Desktop View" width="380"/>
+    </div>
+    <div>
+      <h3>2. Mobile View</h3>
+      <img src="./img/7.png" alt="Mobile View" width="200"/>
+    </div>
+  </div>
+
+  <!-- Second Row: 3 images -->
+  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+    <div>
+      <h3>3. Search Functionality</h3>
+      <img src="./img/5.png" alt="Search Functionality" width="250"/>
+    </div>
+    <div>
+      <h3>4. Booking View</h3>
+      <img src="./img/4.png" alt="Booking Flow" width="250"/>
+    </div>
+    <div>
+      <h3>5. Experience Details</h3>
+      <img src="./img/3.png" alt="Experience Details" width="250"/>
+    </div>
+  </div>
+
+  <!-- Third Row: 2 images -->
+  <div style="display: flex; justify-content: center; gap: 20px;">
+    <div>
+      <h3>6. Checkout Page</h3>
+      <img src="./img/2.png" alt="Checkout Page" width="380"/>
+    </div>
+    <div>
+      <h3>7. Confirmation Page</h3>
+      <img src="./img/1.png" alt="Confirmation Page" width="380"/>
+    </div>
+  </div>
+</div>
+
+---
+
+## 🎯 Overview
+
+BookIt is a comprehensive booking platform designed to connect users with unique travel experiences. Built with modern web technologies, it offers real-time slot management, secure payments, and an intuitive user interface that works seamlessly across all devices.
+
+### Why BookIt?
+
+- 🚀 **High Performance**: Optimized for speed with server-side rendering and efficient caching
+- 🔒 **Secure**: JWT-based authentication and secure payment processing
+- 📱 **Responsive**: Mobile-first design that works on any device
+- ⚡ **Real-time**: Live slot availability updates
+- 🎨 **Modern UI**: Clean, intuitive interface built with TailwindCSS
+
+---
+
+## ✨ Key Features
+
+### For Users
+- 🔍 **Smart Discovery**: Browse curated experiences with advanced filtering
+- 📅 **Real-time Availability**: See available time slots instantly
+- 💰 **Promo Codes**: Apply discount codes at checkout
+- 📧 **Email Confirmations**: Receive instant booking confirmations
+- 🔐 **Secure Authentication**: Safe and encrypted user accounts
+- 📱 **Mobile Optimized**: Book on-the-go with our responsive design
+- 🔄 **Pagination**: Easily navigate through experiences with intuitive page controls
+
+### For Developers
+- 🏗️ **Clean Architecture**: Well-organized, maintainable codebase
+- 🧪 **Tested**: Comprehensive test coverage with Jest
+- 📚 **Documented**: Clear API documentation and inline comments
+- 🔄 **RESTful API**: Standard REST endpoints for easy integration
+- 🐳 **Docker Ready**: Containerized deployment setup included
+
+---
 
 ## 🛠 Tech Stack
 
+<table>
+<tr>
+<td width="50%" valign="top">
+
 ### Frontend
-- **Framework**: React 19 with TypeScript
+- **Framework**: React 19 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: TailwindCSS
-- **State Management**: React Hooks
 - **Routing**: React Router DOM v7
 - **HTTP Client**: Axios
-- **UI Components**: Custom components with Lucide Icons
-- **Form Handling**: React Hook Form with Yup validation
+- **Forms**: React Hook Form + Yup
+- **Icons**: Lucide React
+
+</td>
+<td width="50%" valign="top">
 
 ### Backend
-- **Runtime**: Node.js with Express.js
+- **Runtime**: Node.js + Express.js
 - **Database**: PostgreSQL with pg
 - **Authentication**: JWT
 - **Email**: Nodemailer
 - **Testing**: Jest + Supertest
-- **Environment Management**: dotenv
+- **Environment**: dotenv
 
-## 🏗 Project Structure
+</td>
+</tr>
+</table>
+
+---
+
+## 📁 Project Structure
 
 ```
 highway_delite/
-├── client/                  # Frontend React application
-│   ├── public/              # Static assets
-│   └── src/                 # Source code
-│       ├── assets/          # Images, fonts, etc.
-│       ├── components/      # Reusable UI components
-│       ├── pages/           # Page components
-│       ├── services/        # API services
-│       └── utils/           # Utility functions
 │
-└── server/                  # Backend Express server
-    ├── config/             # Configuration files
-    ├── middleware/         # Express middleware
-    ├── routes/             # API routes
-    ├── services/           # Business logic
-    ├── tests/              # Test files
-    └── utils/              # Helper functions
+├── 📱 client/                    # Frontend React application
+│   ├── public/                   # Static assets
+│   │   └── images/               # Image assets
+│   │
+│   └── src/
+│       ├── assets/               # Fonts, icons, etc.
+│       ├── components/           # Reusable UI components
+│       │   ├── common/           # Shared components
+│       │   ├── layout/           # Layout components
+│       │   └── forms/            # Form components
+│       │
+│       ├── pages/                # Page components
+│       │   ├── Home.tsx
+│       │   ├── ExperienceDetail.tsx
+│       │   ├── Booking.tsx
+│       │   └── Confirmation.tsx
+│       │
+│       ├── services/             # API service layer
+│       │   ├── api.ts            # Axios configuration
+│       │   ├── experienceService.ts
+│       │   └── bookingService.ts
+│       │
+│       ├── utils/                # Utility functions
+│       ├── types/                # TypeScript types
+│       └── App.tsx               # Root component
+│
+└── 🔧 server/                    # Backend Express server
+    ├── config/                   # Configuration files
+    │   └── database.js           # Database connection
+    │
+    ├── middleware/               # Express middleware
+    │   ├── auth.js               # Authentication
+    │   ├── validation.js         # Request validation
+    │   └── errorHandler.js       # Error handling
+    │
+    ├── routes/                   # API routes
+    │   ├── experiences.js
+    │   ├── bookings.js
+    │   ├── auth.js
+    │   └── email.js
+    │
+    ├── services/                 # Business logic
+    │   ├── experienceService.js
+    │   ├── bookingService.js
+    │   ├── promoService.js
+    │   └── emailService.js
+    │
+    ├── tests/                    # Test files
+    │   ├── unit/
+    │   └── integration/
+    │
+    ├── utils/                    # Helper functions
+    └── server.js                 # Entry point
 ```
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm 9+
-- PostgreSQL 14+
+Ensure you have the following installed:
+
+- Node.js `>= 18.0.0`
+- npm `>= 9.0.0`
+- PostgreSQL `>= 14.0`
 - Git
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/bookit.git
-   cd highway_delite
-   ```
+#### 1️⃣ Clone the Repository
 
-2. **Set up the backend**
-   ```bash
-   cd server
-   npm install
-   cp .env.example .env
-   # Update .env with your database credentials
-   ```
+```bash
+git clone https://github.com/indra55/bookit.git
+cd highway_delite
+```
 
-3. **Set up the frontend**
-   ```bash
-   cd ../client
-   npm install
-   cp .env.example .env
-   ```
+#### 2️⃣ Backend Setup
 
-4. **Environment Variables**
-   Create a `.env` file in both `client` and `server` directories with the following variables:
+```bash
+# Navigate to server directory
+cd server
 
-   **Server (.env)**
-   ```env
-   PORT=5000
-   NODE_ENV=development
-   DB_PSQL=postgresql://username:password@localhost:5432/bookit
-   JWT_SECRET=your_jwt_secret
-   EMAIL_USER=your_email@gmail.com
-   EMAIL_PASS=your_email_password
-   ```
+# Install dependencies
+npm install
 
-   **Client (.env)**
-   ```env
-   VITE_API_BASE_URL=http://localhost:5000/api
-   ```
+# Create environment file
+cp .env.example .env
+```
 
-5. **Database Setup**
-   ```bash
-   # Create a new PostgreSQL database
-   createdb bookit
-   ```
+**Configure `.env` file:**
 
-6. **Start the development servers**
-   ```bash
-   # In server directory
-   npm run dev
+```env
+# Server Configuration
+PORT=5000
+NODE_ENV=development
 
-   # In a new terminal, from client directory
-   cd client
-   npm run dev
-   ```
+# Database
+DB_PSQL=postgresql://username:password@localhost:5432/bookit
 
-## 🧠 Features Implemented
+# Authentication
+JWT_SECRET=your_super_secret_jwt_key_change_this
+JWT_EXPIRES_IN=7d
 
-### Frontend
-- **Responsive UI**
-  - Mobile-first design using TailwindCSS
-  - Responsive grid layout for experience cards
-  - Adaptive forms for different screen sizes
+# Email Configuration
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_specific_password
 
-- **User Experience**
-  - Smooth page transitions with React Router
-  - Form validation with Yup
-  - Loading states and error handling
-  - Toast notifications for user feedback
+# CORS
+CORS_ORIGIN=http://localhost:5173
+```
 
-- **State Management**
-  - Context API for global state
-  - Custom hooks for data fetching
-  - Optimistic UI updates
+#### 3️⃣ Frontend Setup
 
-### Backend
-- **RESTful API**
-  - JWT authentication
-  - Rate limiting
-  - Request validation
+```bash
+# Navigate to client directory
+cd ../client
 
-- **Database**
-  - PostgreSQL schema design
-  - Efficient query optimization
-  - Data validation at the model level
+# Install dependencies
+npm install
 
-- **Email Service**
-  - Booking confirmations
-  - Password reset functionality
-  - Promotional emails
+# Create environment file
+cp .env.example .env
+```
+
+**Configure `.env` file:**
+
+```env
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+
+#### 4️⃣ Database Setup
+
+```bash
+# Create database
+createdb bookit
+
+# Run migrations (if available)
+npm run migrate
+
+# Seed sample data (optional)
+npm run seed
+```
+
+#### 5️⃣ Start Development Servers
+
+**Terminal 1 - Backend:**
+```bash
+cd server
+npm run dev
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd client
+npm run dev
+```
+
+🎉 **Application is now running!**
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
+
+---
 
 ## 📚 API Documentation
 
+### Authentication
+
+#### Register User
+```http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "SecurePass123!"
+}
+```
+
+#### Login
+```http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "SecurePass123!"
+}
+```
+
 ### Experiences
 
-#### `GET /api/experiences`
-Get paginated list of experiences
+#### Get All Experiences (Paginated)
+```http
+GET /api/experiences?page=1&limit=6
+```
 
-**Query Parameters**
-- `page` - Page number (default: 1)
-- `limit` - Items per page (default: 6)
-
-**Response**
+**Response:**
 ```json
 {
   "experiences": [
     {
       "id": 1,
-      "title": "Sunset Cruise",
-      "description": "Enjoy a beautiful sunset on the water",
+      "title": "Sunset Yacht Cruise",
+      "description": "Experience breathtaking sunset views on our luxury yacht",
       "price": 89.99,
       "duration": 120,
       "image_url": "/images/sunset-cruise.jpg",
@@ -183,21 +363,23 @@ Get paginated list of experiences
       "available_slots": 15
     }
   ],
-  "total": 15,
+  "total": 42,
   "page": 1,
-  "totalPages": 3
+  "totalPages": 7
 }
 ```
 
-#### `GET /api/experiences/:id`
-Get experience details by ID
+#### Get Experience Details
+```http
+GET /api/experiences/:id
+```
 
-**Response**
+**Response:**
 ```json
 {
   "id": 1,
-  "title": "Sunset Cruise",
-  "description": "Enjoy a beautiful sunset on the water with our luxury yacht.",
+  "title": "Sunset Yacht Cruise",
+  "description": "Enjoy a beautiful sunset on the water with our luxury yacht...",
   "price": 89.99,
   "duration": 120,
   "image_url": "/images/sunset-cruise.jpg",
@@ -205,19 +387,29 @@ Get experience details by ID
   "rating": 4.8,
   "total_slots": 20,
   "available_slots": 15,
-  "included": ["Welcome drink", "Snacks", "Live music"],
-  "requirements": ["Minimum age: 12", "Swimwear recommended"],
-  "cancellation_policy": "Free cancellation up to 24 hours before"
+  "included": [
+    "Welcome drink",
+    "Gourmet snacks",
+    "Live music",
+    "Professional photography"
+  ],
+  "requirements": [
+    "Minimum age: 12 years",
+    "Swimwear recommended",
+    "Valid ID required"
+  ],
+  "cancellation_policy": "Free cancellation up to 24 hours before the experience"
 }
 ```
 
 ### Bookings
 
-#### `POST /api/bookings`
-Create a new booking
+#### Create Booking
+```http
+POST /api/bookings
+Authorization: Bearer <token>
+Content-Type: application/json
 
-**Request**
-```json
 {
   "experience_id": 1,
   "date": "2025-12-15",
@@ -229,11 +421,11 @@ Create a new booking
     "email": "john@example.com",
     "phone": "+1234567890"
   },
-  "special_requests": "Window seat if possible"
+  "special_requests": "Window seat preferred"
 }
 ```
 
-**Response**
+**Response:**
 ```json
 {
   "id": 1,
@@ -251,20 +443,26 @@ Create a new booking
 }
 ```
 
+#### Get User Bookings
+```http
+GET /api/bookings/user
+Authorization: Bearer <token>
+```
+
 ### Promo Codes
 
-#### `POST /api/bookings/promo/validate`
-Validate a promo code
+#### Validate Promo Code
+```http
+POST /api/bookings/promo/validate
+Content-Type: application/json
 
-**Request**
-```json
 {
   "promo_code": "SUMMER10",
   "subtotal": 200.00
 }
 ```
 
-**Response**
+**Response:**
 ```json
 {
   "valid": true,
@@ -277,97 +475,190 @@ Validate a promo code
 }
 ```
 
-### Email Notifications
+For complete API documentation, visit our [API Docs](https://docs.bookit.com).
 
-#### `POST /api/email/send-booking-confirmation`
-Send booking confirmation email
-
-**Request**
-```json
-{
-  "to": "customer@example.com",
-  "booking_details": {
-    "booking_number": "BK-2025-1234",
-    "experience_title": "Sunset Cruise",
-    "date": "2025-12-15",
-    "time_slot": "18:00",
-    "participants": 2,
-    "total_price": 161.98
-  }
-}
-```
-
-**Response**
-```json
-{
-  "success": true,
-  "message": "Confirmation email sent successfully"
-}
-```
+---
 
 ## 🧪 Testing
 
-### Backend Tests
+### Run Backend Tests
+
 ```bash
 cd server
+
+# Run all tests
 npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
 ```
 
-### Frontend Tests
+### Run Frontend Tests
+
 ```bash
 cd client
+
+# Run all tests
 npm test
+
+# Run tests with coverage
+npm run test:coverage
 ```
+
+### Test Coverage Goals
+
+- Unit Tests: > 80%
+- Integration Tests: > 70%
+- E2E Tests: Critical user flows
+
+---
 
 ## 🚀 Deployment
 
-### Production Build
+### Option 1: Traditional Deployment
 
-1. **Build the frontend**
-   ```bash
-   cd client
-   npm run build
-   ```
-
-2. **Set environment to production**
-   ```env
-   NODE_ENV=production
-   ```
-
-3. **Start the production server**
-   ```bash
-   cd ../server
-   npm start
-   ```
-
-### Docker Deployment
-
+#### Build Frontend
 ```bash
-docker-compose up --build
+cd client
+npm run build
+# Output in client/dist/
 ```
 
-## 📝 License
+#### Start Production Server
+```bash
+cd server
+NODE_ENV=production npm start
+```
+
+### Option 2: Docker Deployment
+
+```bash
+# Build and run containers
+docker-compose up --build
+
+# Run in detached mode
+docker-compose up -d
+
+# Stop containers
+docker-compose down
+```
+
+**Docker Compose Configuration:**
+```yaml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: bookit
+      POSTGRES_USER: bookit_user
+      POSTGRES_PASSWORD: secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      DB_PSQL: postgresql://bookit_user:secure_password@postgres:5432/bookit
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./client
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+```
+
+### Option 3: Cloud Deployment
+
+- **Frontend**: Vercel, Netlify, or Cloudflare Pages
+- **Backend**: Railway, Render, or AWS Elastic Beanstalk
+- **Database**: Supabase, Neon, or AWS RDS
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add some amazing feature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
+
+### Coding Standards
+
+- Follow ESLint configuration
+- Write meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+
+---
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👏 Contributing
+---
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## 👥 Authors
 
-## 📧 Contact
+**Hitanshu Gala**
+- Twitter: [@dev_hitanshu](https://twitter.com/dev_hitanshu)
+- Email: galahitanshu@gmail.com
+- GitHub: [@indra55](https://github.com/indra55)
 
-Your Name - [@yourtwitter](https://twitter.com/dev_hitanshu) - your.galahitanshu@gmail.com
+---
 
-Project Link: [https://github.com/indra55/bookit](https://github.com/indra55/bookit)
+## 🙏 Acknowledgments
 
-## 🎉 Acknowledgments
+- Design inspiration from [Figma Design](https://www.figma.com/design/8X6E1Ev8YdtZ3erV0Iifvb/HD-booking?node-id=0-1&p=f&t=UvYrVS9rMFjNGkEr-0)
+- Built with [Vite](https://vitejs.dev/)
+- Powered by [React](https://reactjs.org/)
+- Backend with [Express](https://expressjs.com/)
+- Database: [PostgreSQL](https://www.postgresql.org/)
 
-- [Figma Design](https://www.figma.com/design/8X6E1Ev8YdtZ3erV0Iifvb/HD-booking?node-id=0-1&p=f&t=UvYrVS9rMFjNGkEr-0)
-- [Vite](https://vitejs.dev/)
-- [React](https://reactjs.org/)
-- [Express](https://expressjs.com/)
-- [PostgreSQL](https://www.postgresql.org/)
+---
+
+## 📞 Support
+
+Need help? Here's how to get support:
+
+- 📧 Email: galahitanshu@gmail.com
+- 🐛 [Report Issues](https://github.com/indra55/bookit/issues)
+- 💬 [Discussions](https://github.com/indra55/bookit/discussions)
+
+---
+
+<div align="center">
+
+**[⬆ Back to Top](#-bookit-experiences--slots)**
+
+Made with ❤️ by [Hitanshu Gala](https://github.com/indra55)
+
+⭐ Star this repo if you find it helpful!
+
+</div>
