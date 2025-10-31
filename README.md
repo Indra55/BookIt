@@ -9,7 +9,7 @@
 [![React Version](https://img.shields.io/badge/react-19-61dafb)](https://reactjs.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-316192)](https://www.postgresql.org)
 
-[Live Demo](https://bookit-demo.com) • [Documentation](https://docs.bookit.com) • [Report Bug](https://github.com/indra55/bookit/issues) • [Request Feature](https://github.com/indra55/bookit/issues)
+[Live Demo](https://bookit.hitanshu.tech/) • [Documentation](https://github.com/Indra55/BookIt/blob/main/README.md) • [Report Bug](https://github.com/indra55/bookit/issues) • [Request Feature](https://github.com/indra55/bookit/issues)
 
 </div>
 
