@@ -30,51 +30,26 @@
 - [License](#-license)
 
 ---
-
 ## 📸 Screenshots
 
-<div align="center">
-  <!-- First Row: 2 images -->
-  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
-    <div>
-      <h3>1. Desktop View</h3>
-      <img src="./img/6.png" alt="Desktop View" width="380"/>
-    </div>
-    <div>
-      <h3>2. Mobile View</h3>
-      <img src="./img/7.png" alt="Mobile View" width="200"/>
-    </div>
-  </div>
+### Desktop & Mobile Views
+<p align="center">
+  <img src="./img/6.png" alt="Desktop View" width="48%"/>
+  <img src="./img/7.png" alt="Mobile View" width="18%"/>
+</p>
 
-  <!-- Second Row: 3 images -->
-  <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
-    <div>
-      <h3>3. Search Functionality</h3>
-      <img src="./img/5.png" alt="Search Functionality" width="250"/>
-    </div>
-    <div>
-      <h3>4. Booking View</h3>
-      <img src="./img/4.png" alt="Booking Flow" width="250"/>
-    </div>
-    <div>
-      <h3>5. Experience Details</h3>
-      <img src="./img/3.png" alt="Experience Details" width="250"/>
-    </div>
-  </div>
+### Search, Booking & Experience Details
+<p align="center">
+  <img src="./img/5.png" alt="Search Functionality" width="30%"/>
+  <img src="./img/4.png" alt="Booking View" width="30%"/>
+  <img src="./img/3.png" alt="Experience Details" width="30%"/>
+</p>
 
-  <!-- Third Row: 2 images -->
-  <div style="display: flex; justify-content: center; gap: 20px;">
-    <div>
-      <h3>6. Checkout Page</h3>
-      <img src="./img/2.png" alt="Checkout Page" width="380"/>
-    </div>
-    <div>
-      <h3>7. Confirmation Page</h3>
-      <img src="./img/1.png" alt="Confirmation Page" width="380"/>
-    </div>
-  </div>
-</div>
-
+### Checkout & Confirmation
+<p align="center">
+  <img src="./img/2.png" alt="Checkout Page" width="45%"/>
+  <img src="./img/1.png" alt="Confirmation Page" width="45%"/>
+</p>
 ---
 
 ## 🎯 Overview
