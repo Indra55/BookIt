@@ -45,37 +45,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// Request logging middleware
-app.use((req, res, next) => {
-  const start = Date.now();
-  
-  res.on('finish', () => {
-    const duration = Date.now() - start;
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`);
-  });
-  
-  // Log request details for debugging
-  console.log(`\n=== INCOMING REQUEST ===`);
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-  console.log('Headers:', req.headers);
-  
-  // Safely log request body
-  try {
-    if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
-      console.log('Body:', JSON.stringify(req.body, null, 2));
-    } else {
-      console.log('Body: (empty or not an object)');
-    }
-  } catch (error) {
-    console.error('Error logging request body:', error);
-  }
-  
-  console.log('========================\n');
-  
-  next();
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -87,45 +56,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/experiences', experienceRouter);
 app.use('/api/booking', bookingRouter);
-app.use('/api/email', emailRouter);
-
-// 404 handler
-app.use((req, res, next) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
-  error.statusCode = 404;
-  next(error);
-});
-
-// Global error handler
-app.use((err, req, res, next) => {
-  console.error('Global Error Handler:', err);
-  
-  // If response was already sent, delegate to default Express error handler
-  if (res.headersSent) {
-    return next(err);
-  }
-  
-  // Handle specific error types
-  if (err.name === 'ValidationError') {
-    return res.status(400).json({
-      error: 'Validation Error',
-      details: err.details || err.message
-    });
-  }
-  
-  // Handle JWT errors
-  if (err.name === 'JsonWebTokenError') {
-    return res.status(401).json({
-      error: 'Invalid token',
-      code: 'INVALID_TOKEN'
-    });
-  }
-  
-  // Pass to the error handler
-  errorHandler(err, req, res, next);
-});
-
-// Error handler
+app.use('/api/email', emailRouter);  
+ 
 app.use(errorHandler);
 
 app.listen(PORT, () => {
