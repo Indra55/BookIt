@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import { api } from '../utils/api';
 
 const BookingConfirmation = () => {
   const location = useLocation();
@@ -9,36 +9,30 @@ const BookingConfirmation = () => {
   
   const { bookingId, bookingDetails, userEmail } = location.state || { 
     bookingId: 'HUF56&SO',
-    bookingDetails: {},
+    bookingDetails: {
+      date: new Date().toISOString(),
+      timeSlot: '10:00 AM - 11:00 AM',
+      vehicleType: 'Car',
+      location: 'Default Location',
+      userName: 'Valued Customer'
+    },
     userEmail: ''
-  };
+  } as const;
 
   useEffect(() => {
     const sendConfirmationEmail = async () => {
       try {
         if (!userEmail) return;
         
-        const response = await axios.post('https://bookit-o6sm.onrender.com/api/email/send-booking-confirmation', {
+        await api.post('/api/email/send-booking-confirmation', {
           to: userEmail,
           bookingDetails: {
             ...bookingDetails,
-            bookingId,
-            date: bookingDetails?.date || new Date().toISOString(),
-            timeSlot: bookingDetails?.timeSlot || '10:00 AM - 11:00 AM',
-            vehicleType: bookingDetails?.vehicleType || 'Car',
-            location: bookingDetails?.location || 'Default Location',
-            userName: bookingDetails?.userName || 'Valued Customer'
-          }
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            bookingId
           }
         });
 
-        if (response.data.success) {
-          console.log('Confirmation email sent successfully');
-        }
+        console.log('Confirmation email sent successfully');
       } catch (error) {
         console.error('Failed to send confirmation email:', error);
         toast.error('Failed to send confirmation email');

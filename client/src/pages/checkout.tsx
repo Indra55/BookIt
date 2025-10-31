@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { api } from '../utils/api';
 
 interface PromoDetails {
   code: string;
@@ -86,25 +87,25 @@ const CheckoutPage = () => {
     setPromoError('');
 
     try {
-      const response = await fetch('https://bookit-o6sm.onrender.com/api/booking/promo/validate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          promo_code: promoCode,
-          subtotal: subtotal
-        }),
+      const data = await api.post<{
+        valid: boolean;
+        message?: string;
+        promo?: {
+          code: string;
+          discount_percent: number;
+          discount_amount: number;
+        };
+      }>('/api/booking/promo/validate', {
+        promo_code: promoCode,
+        subtotal: subtotal
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to validate promo code');
-      }
 
       if (!data.valid) {
         throw new Error(data.message || 'Invalid promo code');
+      }
+
+      if (!data.promo) {
+        throw new Error('Invalid promo data received');
       }
 
       setAppliedPromo({
@@ -170,20 +171,25 @@ const CheckoutPage = () => {
 
       console.log('Sending booking request:', requestBody);
 
-      const response = await fetch('https://bookit-o6sm.onrender.com/api/booking', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const data = await api.post<{
+        booking: {
+          id: string;
+          subtotal: number;
+          taxes: number;
+          discount: number;
+          total: number;
+          promo_code?: string;
+          created_at: string;
+        };
+        bookingId?: string;
+        message?: string;
+        errors?: string[];
+      }>('/api/booking', requestBody);
 
-      const data = await response.json();
       console.log('Booking response:', data);
 
-      if (!response.ok) {
-        const errorMessage = data.errors ? data.errors.join(', ') : data.message || 'Failed to process booking';
-        throw new Error(errorMessage);
+      if (data.errors && data.errors.length > 0) {
+        throw new Error(data.errors.join(', '));
       }
 
       navigate('/booking-confirmation', {

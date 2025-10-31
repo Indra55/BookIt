@@ -1,7 +1,7 @@
+// API base URLs - will try localhost first, then fall back to production
 const API_BASE_URLS = [
-  'http://localhost:4000',
-  'https://cw8nsbb5-4000.inc1.devtunnels.ms',
-  'https://bookit-o6sm.onrender.com'
+  'http://localhost:4000', // Local development
+  'https://bookit-o6sm.onrender.com' // Production
 ];
 
 type RequestOptions = {
