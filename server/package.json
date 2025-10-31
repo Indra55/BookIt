@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "type": "module",
+  "devDependencies": {
+    "@babel/preset-env": "^7.28.5",
+    "@types/bun": "latest",
+    "cross-env": "^10.1.0",
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
+  },
+  "scripts": {
+    "dev": "bun run --watch server.js",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
+    "test:api": "node tests/bookingTest.js",
+    "test:setup": "node tests/setupTestData.js",
+    "test:slots": "node tests/addTestSlots.js"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "axios": "^1.13.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.10",
+    "pg": "^8.16.3"
+  }
+}
