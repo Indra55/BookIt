@@ -1,5 +1,8 @@
-require("dotenv").config();
-const { Pool } = require("pg");
+import dotenv from 'dotenv';
+import pg from 'pg';
+const { Pool } = pg;
+
+dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
 const connectionString = process.env.DB_PSQL;
@@ -12,4 +15,4 @@ const pool = new Pool({
   }
 });
 
-module.exports = pool;
+export default pool;

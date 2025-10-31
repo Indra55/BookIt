@@ -1,7 +1,7 @@
 import express from 'express';
-import pool from '../config/dbconfig'
+import pool from '../config/dbconfig.js'
 import bcrypt  from 'bcryptjs'
-import { authenticateToken } from '../middleware/authorization';
+import { authenticateToken } from '../middleware/authorization.js';
 import {jwtTokens} from '../utils/jwtUtil'
 
 let refreshTokens = [];
