@@ -4,15 +4,9 @@ const { Pool } = pg;
 
 dotenv.config();
 
-const isProduction = process.env.NODE_ENV === "production";
-const connectionString = process.env.DB_PSQL;
-
 const pool = new Pool({
-  connectionString: isProduction ? process.env.DB_PSQL : connectionString,
-  ssl: {
-    require: true,
-    rejectUnauthorized: false
-  }
+  connectionString: process.env.DB_PSQL,
+  ssl: { require: true, rejectUnauthorized: false }
 });
 
 export default pool;
