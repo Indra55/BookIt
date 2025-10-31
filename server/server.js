@@ -56,8 +56,45 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/experiences', experienceRouter);
 app.use('/api/booking', bookingRouter);
-app.use('/api/email', emailRouter);  
- 
+app.use('/api/email', emailRouter);
+
+// 404 handler
+app.use((req, res, next) => {
+  const error = new Error(`Not Found - ${req.originalUrl}`);
+  error.statusCode = 404;
+  next(error);
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Global Error Handler:', err);
+  
+  // If response was already sent, delegate to default Express error handler
+  if (res.headersSent) {
+    return next(err);
+  }
+  
+  // Handle specific error types
+  if (err.name === 'ValidationError') {
+    return res.status(400).json({
+      error: 'Validation Error',
+      details: err.details || err.message
+    });
+  }
+  
+  // Handle JWT errors
+  if (err.name === 'JsonWebTokenError') {
+    return res.status(401).json({
+      error: 'Invalid token',
+      code: 'INVALID_TOKEN'
+    });
+  }
+  
+  // Pass to the error handler
+  errorHandler(err, req, res, next);
+});
+
+// Error handler
 app.use(errorHandler);
 
 app.listen(PORT, () => {
