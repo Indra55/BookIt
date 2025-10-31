@@ -59,9 +59,18 @@ app.use((req, res, next) => {
   console.log(`\n=== INCOMING REQUEST ===`);
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
   console.log('Headers:', req.headers);
-  if (Object.keys(req.body).length > 0) {
-    console.log('Body:', JSON.stringify(req.body, null, 2));
+  
+  // Safely log request body
+  try {
+    if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
+      console.log('Body:', JSON.stringify(req.body, null, 2));
+    } else {
+      console.log('Body: (empty or not an object)');
+    }
+  } catch (error) {
+    console.error('Error logging request body:', error);
   }
+  
   console.log('========================\n');
   
   next();

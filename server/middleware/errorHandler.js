@@ -15,15 +15,30 @@ process.on('uncaughtException', (error) => {
 });
 
 const errorHandler = (err, req, res, next) => {
+  // Safely handle undefined/null errors
+  if (!err) {
+    console.error('=== UNKNOWN ERROR ===');
+    console.error('An unknown error occurred, but no error object was provided');
+    console.error('Request URL:', req?.originalUrl || 'N/A');
+    console.error('Request Method:', req?.method || 'N/A');
+    console.error('Timestamp:', new Date().toISOString());
+    console.error('====================');
+    
+    return res.status(500).json({
+      error: 'An unknown error occurred',
+      code: 'UNKNOWN_ERROR'
+    });
+  }
+
   // Log all error details
   console.error('=== ERROR HANDLER ===');
   console.error('Timestamp:', new Date().toISOString());
-  console.error('URL:', req.originalUrl);
-  console.error('Method:', req.method);
-  console.error('Headers:', req.headers);
-  console.error('Query:', req.query);
-  console.error('Body:', req.body);
-  console.error('Error Name:', err.name);
+  console.error('URL:', req?.originalUrl || 'N/A');
+  console.error('Method:', req?.method || 'N/A');
+  console.error('Headers:', req?.headers || 'N/A');
+  console.error('Query:', req?.query || 'N/A');
+  console.error('Body:', req?.body || 'N/A');
+  console.error('Error Name:', err.name || 'N/A');
   console.error('Error Message:', err.message || 'No error message');
   console.error('Error Stack:', err.stack || 'No stack trace');
   console.error('Error Code:', err.code || 'N/A');
